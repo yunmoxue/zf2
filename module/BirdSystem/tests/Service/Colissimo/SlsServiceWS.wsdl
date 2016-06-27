@@ -1,0 +1,920 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sls.ws.coliposte.fr" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SlsServiceWS" targetNamespace="http://sls.ws.coliposte.fr">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:tns="http://sls.ws.coliposte.fr" elementFormDefault="unqualified" targetNamespace="http://sls.ws.coliposte.fr" version="1.0">
+<xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+<xs:element name="GenerateLabelRequestType">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="outputFormat">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="x" type="xs:int"/>
+<xs:element minOccurs="0" name="y" type="xs:int"/>
+<xs:element minOccurs="0" name="outputPrintingType" type="xs:string"/>
+<xs:element minOccurs="0" name="dematerialized" type="xs:boolean"/>
+<xs:element minOccurs="0" name="returnType" type="xs:string"/>
+<xs:element minOccurs="0" name="printCODDocument" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="letter">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="service">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productCode" type="xs:string"/>
+<xs:element name="depositDate" type="xs:date"/>
+<xs:element minOccurs="0" name="mailBoxPicking" type="xs:boolean"/>
+<xs:element minOccurs="0" name="mailBoxPickingDate" type="xs:date"/>
+<xs:element minOccurs="0" name="vatCode" type="xs:int"/>
+<xs:element minOccurs="0" name="vatPercentage" type="xs:int"/>
+<xs:element minOccurs="0" name="vatAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="transportationAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="totalAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="orderNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="commercialName" type="xs:string"/>
+<xs:element minOccurs="0" name="returnTypeChoice" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="parcel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="insuranceAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="insuranceValue" type="xs:int"/>
+<xs:element minOccurs="0" name="recommendationLevel" type="xs:string"/>
+<xs:element minOccurs="0" name="weight" type="xs:float"/>
+<xs:element minOccurs="0" name="nonMachinable" type="xs:boolean"/>
+<xs:element minOccurs="0" name="COD" type="xs:boolean"/>
+<xs:element minOccurs="0" name="CODAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="returnReceipt" type="xs:boolean"/>
+<xs:element minOccurs="0" name="instructions" type="xs:string"/>
+<xs:element minOccurs="0" name="pickupLocationId" type="xs:string"/>
+<xs:element minOccurs="0" name="ftd" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="customsDeclarations">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="includeCustomsDeclarations" type="xs:boolean"/>
+<xs:element minOccurs="0" name="contents">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="article" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element name="quantity" type="xs:int"/>
+<xs:element name="weight" type="xs:float"/>
+<xs:element name="value" type="xs:float"/>
+<xs:element minOccurs="0" name="hsCode" type="xs:string"/>
+<xs:element minOccurs="0" name="originCountry" type="xs:string"/>
+<xs:element minOccurs="0" name="currency" type="xs:string"/>
+<xs:element minOccurs="0" name="artref" type="xs:string"/>
+<xs:element minOccurs="0" name="originalIdent" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="category">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="value" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="original" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="originalIdent" type="xs:string"/>
+<xs:element minOccurs="0" name="originalInvoiceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="originalInvoiceDate" type="xs:date"/>
+<xs:element minOccurs="0" name="originalParcelNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="importersReference" type="xs:string"/>
+<xs:element minOccurs="0" name="importersContact" type="xs:string"/>
+<xs:element minOccurs="0" name="officeOrigin" type="xs:string"/>
+<xs:element minOccurs="0" name="comments" type="xs:string"/>
+<xs:element minOccurs="0" name="invoiceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="licenceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="certificatNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="senderParcelRef" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="addressee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="addresseeParcelRef" type="xs:string"/>
+<xs:element minOccurs="0" name="codeBarForReference" type="xs:boolean"/>
+<xs:element minOccurs="0" name="serviceInfo" type="xs:string"/>
+<xs:element minOccurs="0" name="promotionCode" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="fields">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="field" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="key" type="xs:string"/>
+<xs:element name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetListMailBoxPickingDatesRetourRequestType">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetProductInterRequestType">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="productCode" type="xs:string"/>
+<xs:element minOccurs="0" name="insurance" type="xs:boolean"/>
+<xs:element minOccurs="0" name="nonMachinable" type="xs:boolean"/>
+<xs:element minOccurs="0" name="returnReceipt" type="xs:boolean"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="generateLabel" type="tns:generateLabel"/>
+<xs:element name="generateLabelResponse" type="tns:generateLabelResponse"/>
+<xs:element name="getListMailBoxPickingDates" type="tns:getListMailBoxPickingDates"/>
+<xs:element name="getListMailBoxPickingDatesResponse" type="tns:getListMailBoxPickingDatesResponse"/>
+<xs:element name="getProductInter" type="tns:getProductInter"/>
+<xs:element name="getProductInterResponse" type="tns:getProductInterResponse"/>
+<xs:element name="planPickup" type="tns:planPickup"/>
+<xs:element name="planPickupRequestType">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mailBoxPickingDate" type="xs:date"/>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="planPickupResponse" type="tns:planPickupResponse"/>
+<xs:complexType name="generateLabel">
+<xs:sequence>
+<xs:element minOccurs="0" name="generateLabelRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="outputFormat">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="x" type="xs:int"/>
+<xs:element minOccurs="0" name="y" type="xs:int"/>
+<xs:element minOccurs="0" name="outputPrintingType" type="xs:string"/>
+<xs:element minOccurs="0" name="dematerialized" type="xs:boolean"/>
+<xs:element minOccurs="0" name="returnType" type="xs:string"/>
+<xs:element minOccurs="0" name="printCODDocument" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="letter">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="service">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productCode" type="xs:string"/>
+<xs:element name="depositDate" type="xs:date"/>
+<xs:element minOccurs="0" name="mailBoxPicking" type="xs:boolean"/>
+<xs:element minOccurs="0" name="mailBoxPickingDate" type="xs:date"/>
+<xs:element minOccurs="0" name="vatCode" type="xs:int"/>
+<xs:element minOccurs="0" name="vatPercentage" type="xs:int"/>
+<xs:element minOccurs="0" name="vatAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="transportationAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="totalAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="orderNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="commercialName" type="xs:string"/>
+<xs:element minOccurs="0" name="returnTypeChoice" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="parcel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="insuranceAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="insuranceValue" type="xs:int"/>
+<xs:element minOccurs="0" name="recommendationLevel" type="xs:string"/>
+<xs:element minOccurs="0" name="weight" type="xs:float"/>
+<xs:element minOccurs="0" name="nonMachinable" type="xs:boolean"/>
+<xs:element minOccurs="0" name="COD" type="xs:boolean"/>
+<xs:element minOccurs="0" name="CODAmount" type="xs:int"/>
+<xs:element minOccurs="0" name="returnReceipt" type="xs:boolean"/>
+<xs:element minOccurs="0" name="instructions" type="xs:string"/>
+<xs:element minOccurs="0" name="pickupLocationId" type="xs:string"/>
+<xs:element minOccurs="0" name="ftd" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="customsDeclarations">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="includeCustomsDeclarations" type="xs:boolean"/>
+<xs:element minOccurs="0" name="contents">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="article" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element name="quantity" type="xs:int"/>
+<xs:element name="weight" type="xs:float"/>
+<xs:element name="value" type="xs:float"/>
+<xs:element minOccurs="0" name="hsCode" type="xs:string"/>
+<xs:element minOccurs="0" name="originCountry" type="xs:string"/>
+<xs:element minOccurs="0" name="currency" type="xs:string"/>
+<xs:element minOccurs="0" name="artref" type="xs:string"/>
+<xs:element minOccurs="0" name="originalIdent" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="category">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="value" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="original" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="originalIdent" type="xs:string"/>
+<xs:element minOccurs="0" name="originalInvoiceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="originalInvoiceDate" type="xs:date"/>
+<xs:element minOccurs="0" name="originalParcelNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="importersReference" type="xs:string"/>
+<xs:element minOccurs="0" name="importersContact" type="xs:string"/>
+<xs:element minOccurs="0" name="officeOrigin" type="xs:string"/>
+<xs:element minOccurs="0" name="comments" type="xs:string"/>
+<xs:element minOccurs="0" name="invoiceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="licenceNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="certificatNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="senderParcelRef" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="addressee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="addresseeParcelRef" type="xs:string"/>
+<xs:element minOccurs="0" name="codeBarForReference" type="xs:boolean"/>
+<xs:element minOccurs="0" name="serviceInfo" type="xs:string"/>
+<xs:element minOccurs="0" name="promotionCode" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="fields">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="field" nillable="true">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="key" type="xs:string"/>
+<xs:element name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generateLabelResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:GenerateLabelResponseType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GenerateLabelResponseType">
+<xs:complexContent>
+<xs:extension base="tns:baseResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="labelXmlReponse" type="tns:xmlResponse"/>
+<xs:element minOccurs="0" name="labelResponse" type="tns:labelResponse"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="baseResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="messages" nillable="true" type="tns:Message"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="xmlResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="cn23" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+<xs:element minOccurs="0" name="addressee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="addresseeParcelRef" type="xs:string"/>
+<xs:element minOccurs="0" name="codeBarForReference" type="xs:boolean"/>
+<xs:element minOccurs="0" name="serviceInfo" type="xs:string"/>
+<xs:element minOccurs="0" name="promotionCode" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="barCodeCityssimo" type="xs:string"/>
+<xs:element minOccurs="0" name="barCodePCH" type="xs:string"/>
+<xs:element minOccurs="0" name="barCodeRouting" type="xs:string"/>
+<xs:element minOccurs="0" name="belgiumLabel" type="tns:belgiumLabel"/>
+<xs:element minOccurs="0" name="contractNumber" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="elementVisual" nillable="true" type="tns:elementVisual"/>
+<xs:element minOccurs="0" name="numberPCH" type="xs:string"/>
+<xs:element minOccurs="0" name="numberRouting" type="xs:string"/>
+<xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="parcelNumberPartner" type="xs:string"/>
+<xs:element minOccurs="0" name="pickupLocation" type="tns:pickupLocation"/>
+<xs:element minOccurs="0" name="routing" type="tns:routing"/>
+<xs:element minOccurs="0" name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="senderParcelRef" type="xs:string"/>
+<xs:element name="address">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mobileNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode1" type="xs:string"/>
+<xs:element minOccurs="0" name="doorCode2" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="intercom" type="xs:string"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="sitePCH" type="tns:site"/>
+<xs:element minOccurs="0" name="zoneRouting" type="tns:zoneRouting"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="belgiumLabel">
+<xs:sequence>
+<xs:element minOccurs="0" name="codeBarre" type="xs:string"/>
+<xs:element minOccurs="0" name="codeVAS" type="tns:codeVAS"/>
+<xs:element minOccurs="0" name="identification" type="xs:string"/>
+<xs:element minOccurs="0" name="returnAddress" type="tns:returnAddressBelgium"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="codeVAS">
+<xs:sequence>
+<xs:element minOccurs="0" name="deliveryMode" type="xs:string"/>
+<xs:element minOccurs="0" name="mention" type="xs:string"/>
+<xs:element minOccurs="0" name="reserve" type="xs:string"/>
+<xs:element minOccurs="0" name="signature" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="returnAddressBelgium">
+<xs:sequence>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="mention" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="elementVisual">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="position" type="xs:string"/>
+<xs:element minOccurs="0" name="shortcut" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="pickupLocation">
+<xs:sequence>
+<xs:element minOccurs="0" name="address" type="tns:addressPickupLocation"/>
+<xs:element minOccurs="0" name="groupRouting" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="netWork" type="xs:string"/>
+<xs:element minOccurs="0" name="pointId" type="xs:string"/>
+<xs:element minOccurs="0" name="routingFileVersion" type="xs:string"/>
+<xs:element minOccurs="0" name="routingZipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceLabel" type="xs:string"/>
+<xs:element minOccurs="0" name="sortDistribution" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addressPickupLocation">
+<xs:sequence>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="countryLabel" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="line4" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="routing">
+<xs:sequence>
+<xs:element minOccurs="0" name="barcodeId" type="xs:string"/>
+<xs:element minOccurs="0" name="depotDest" type="xs:string"/>
+<xs:element minOccurs="0" name="destinationCountry" type="xs:string"/>
+<xs:element minOccurs="0" name="destinationCountryText" type="xs:string"/>
+<xs:element minOccurs="0" name="groupingPriorityLabel" type="xs:string"/>
+<xs:element minOccurs="0" name="partnerType" type="xs:string"/>
+<xs:element minOccurs="0" name="routingVersion" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceMark" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceText" type="xs:string"/>
+<xs:element minOccurs="0" name="sortDest" type="xs:string"/>
+<xs:element minOccurs="0" name="sortOrigin" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="site">
+<xs:sequence>
+<xs:element minOccurs="0" name="address" type="tns:addressPCH"/>
+<xs:element minOccurs="0" name="code" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addressPCH">
+<xs:sequence>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="zoneRouting">
+<xs:sequence>
+<xs:element minOccurs="0" name="zoneCABRoutage" type="tns:zoneCABRoutage"/>
+<xs:element minOccurs="0" name="zoneInfosRoutage" type="tns:zoneInfosRoutage"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="zoneCABRoutage">
+<xs:sequence>
+<xs:element minOccurs="0" name="barCodeRouting" type="xs:string"/>
+<xs:element minOccurs="0" name="parcelNumberRouting" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="zoneInfosRoutage">
+<xs:sequence>
+<xs:element minOccurs="0" name="controlKeyTrackingNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="datePrinting" type="xs:string"/>
+<xs:element minOccurs="0" name="hourPrinting" type="xs:string"/>
+<xs:element minOccurs="0" name="identificationDestination1" type="xs:string"/>
+<xs:element minOccurs="0" name="identificationDestination2" type="xs:string"/>
+<xs:element minOccurs="0" name="numberVersionWS" type="xs:string"/>
+<xs:element minOccurs="0" name="routingVersion" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceMark" type="xs:string"/>
+<xs:element minOccurs="0" name="sortDest" type="xs:string"/>
+<xs:element minOccurs="0" name="sortOrigin" type="xs:string"/>
+<xs:element minOccurs="0" name="trackingNumberRouting" type="xs:string"/>
+<xs:element minOccurs="0" name="typeServiceLivraison" type="xs:string"/>
+<xs:element minOccurs="0" name="rDepot" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="labelResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="label" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+<xs:element minOccurs="0" name="cn23" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+<xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="parcelNumberPartner" type="xs:string"/>
+<xs:element minOccurs="0" name="pdfUrl" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Message">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"/>
+<xs:element minOccurs="0" name="messageContent" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="planPickup">
+<xs:sequence>
+<xs:element minOccurs="0" name="planPickupRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="parcelNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="mailBoxPickingDate" type="xs:date"/>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="companyName" type="xs:string"/>
+<xs:element minOccurs="0" name="lastName" type="xs:string"/>
+<xs:element minOccurs="0" name="firstName" type="xs:string"/>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="planPickupResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:planPickupResponseType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="planPickupResponseType">
+<xs:complexContent>
+<xs:extension base="tns:baseResponse">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getListMailBoxPickingDates">
+<xs:sequence>
+<xs:element minOccurs="0" name="getListMailBoxPickingDatesRetourRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="sender">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="line0" type="xs:string"/>
+<xs:element minOccurs="0" name="line1" type="xs:string"/>
+<xs:element minOccurs="0" name="line2" type="xs:string"/>
+<xs:element minOccurs="0" name="line3" type="xs:string"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getListMailBoxPickingDatesResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:GetListMailBoxPickingDatesResponseType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GetListMailBoxPickingDatesResponseType">
+<xs:complexContent>
+<xs:extension base="tns:baseResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="mailBoxPickingDateMaxHour" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="mailBoxPickingDates" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="validityTime" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getProductInter">
+<xs:sequence>
+<xs:element minOccurs="0" name="getProductInterRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="contractNumber" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="productCode" type="xs:string"/>
+<xs:element minOccurs="0" name="insurance" type="xs:boolean"/>
+<xs:element minOccurs="0" name="nonMachinable" type="xs:boolean"/>
+<xs:element minOccurs="0" name="returnReceipt" type="xs:boolean"/>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+<xs:element minOccurs="0" name="city" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProductInterResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:GetProductInterResponseType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GetProductInterResponseType">
+<xs:complexContent>
+<xs:extension base="tns:baseResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="product" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="partnerType" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="returnTypeChoice" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProductInterResponse">
+    <wsdl:part element="tns:getProductInterResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateLabelResponse">
+    <wsdl:part element="tns:generateLabelResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateLabel">
+    <wsdl:part element="tns:generateLabel" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListMailBoxPickingDatesResponse">
+    <wsdl:part element="tns:getListMailBoxPickingDatesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductInter">
+    <wsdl:part element="tns:getProductInter" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="planPickupResponse">
+    <wsdl:part element="tns:planPickupResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="planPickup">
+    <wsdl:part element="tns:planPickup" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListMailBoxPickingDates">
+    <wsdl:part element="tns:getListMailBoxPickingDates" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceV3WS">
+    <wsdl:operation name="generateLabel">
+      <wsdl:input message="tns:generateLabel" name="generateLabel">
+    </wsdl:input>
+      <wsdl:output message="tns:generateLabelResponse" name="generateLabelResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="planPickup">
+      <wsdl:input message="tns:planPickup" name="planPickup">
+    </wsdl:input>
+      <wsdl:output message="tns:planPickupResponse" name="planPickupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListMailBoxPickingDates">
+      <wsdl:input message="tns:getListMailBoxPickingDates" name="getListMailBoxPickingDates">
+    </wsdl:input>
+      <wsdl:output message="tns:getListMailBoxPickingDatesResponse" name="getListMailBoxPickingDatesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductInter">
+      <wsdl:input message="tns:getProductInter" name="getProductInter">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductInterResponse" name="getProductInterResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SlsServiceWSSoapBinding" type="tns:ServiceV3WS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generateLabel">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generateLabel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generateLabelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="planPickup">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="planPickup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="planPickupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListMailBoxPickingDates">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getListMailBoxPickingDates">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getListMailBoxPickingDatesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductInter">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getProductInter">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductInterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SlsServiceWS">
+    <wsdl:port binding="tns:SlsServiceWSSoapBinding" name="SlsServiceWSPort">
+      <soap:address location="https://ws.colissimo.fr/sls-ws/SlsServiceWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

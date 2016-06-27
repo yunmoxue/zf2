@@ -1,0 +1,11 @@
+{
+    "name": "bird-system/zf2",
+    "description": "basic framework base on zf2",
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5",
+        "enlitepro/enlite-monolog": "@stable",
+        "phpoffice/phpexcel": "@stable",
+        "mattketmo/camel": "@stable"
+    }
+}
